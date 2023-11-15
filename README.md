@@ -2,11 +2,11 @@
 
 A simple Python app for [Docker's Python Language Guide](https://docs.docker.com/language/python).
 
-# DFF Copied Over
+# Source
 
-- I copied over some of the scripts from the website to make easier to cut and paste.
+- Based on Donald Ferguson's github :https://github.com/donald-f-ferguson/python-docker
 
-## Run a simple test.
+## Run a simple test. without decker
 
 ```
 # This is not necessary becaise I am in the directory
@@ -21,8 +21,10 @@ source .venv/bin/activate
 # Install dependencies. This is an example of one of the 12 Factor Rules --> Declare dependencies.
 (.venv) $ python3 -m pip install -r requirements.txt
 
-# Run the application and access from a browser
+# Run the application and access from a browser, run the flask development server.
 (.venv) $ python3 -m flask run
+or
+(.venv) $  python3 app.py
 
 # CNTL-C to end application
 
@@ -33,17 +35,36 @@ deactivate
 ## Docker
 
 - The command example is in beta and I am not using that version of Docker.
+- docker init
+? What application platform does your project use? Python
+? What version of Python do you want to use? 3.11
+? What port do you want your app to listen on? 5000
+? What is the command to run your app? flask run --host 0.0.0.0
+  - create:
+  - Dockerfile
+  - .dockerignore
+  - compose.yaml
+- Commands:
+  - ```docker compose up --build  ``` run the app
+  - ```docker compose up --build -d```, ```docker compose down``` run in background
 
 
-- So, I went old school and wrote the files following a different example.  https://medium.com/geekculture/how-to-dockerize-your-flask-application-2d0487ecefb8
+
+- Wrote the docker files following a old school example.  https://medium.com/geekculture/how-to-dockerize-your-flask-application-2d0487ecefb8
+- first import python from dockerhub.
+- create working dir
+- copy the requirement
+- run requirement to install all the dependencies
+- copy the entire project
+- expose port 5000 as the app will run on port 5000.
+- Define the FLASK_APP environment variable. Else the interpreter may complain it’s unable to find the variable
+- Type in the run command which is flask run --host 0.0.0.0. This is to ensure the server accepts requests from all hosts.
 
 - Commands:
-  - ```docker build -t donff2j/e6156-flask .```
+  - ```docker build -t janisme/e6156-flask .```
   - ```docker images``` (I have a lot of images)
-  - ```docker run -p 5001:5001 donff2j/e6156-flask```
-  - ```docker push donff2j/e6156-flask``` (This step pushed an image for your architecture)
-
-- I committed and pushed the project. 
+  - ```docker run -p 5001:5001 janisme/e6156-flask```
+  - ```docker push janisme/e6156-flask``` (This step pushed an image for your architecture)
 
 ## EC2
 
