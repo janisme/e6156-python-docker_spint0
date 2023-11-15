@@ -36,10 +36,10 @@ deactivate
 
 - The command example is in beta and I am not using that version of Docker.
 - docker init
-  ? What application platform does your project use? Python
+  ```? What application platform does your project use? Python
   ? What version of Python do you want to use? 3.11
   ? What port do you want your app to listen on? 5000
-  ? What is the command to run your app? flask run --host 0.0.0.0
+  ? What is the command to run your app? flask run --host 0.0.0.0```
   - create:
     - Dockerfile
     - .dockerignore
@@ -51,6 +51,7 @@ deactivate
 
 
 - Wrote the docker files following a old school example.  https://medium.com/geekculture/how-to-dockerize-your-flask-application-2d0487ecefb8
+- dockerfile:
   - first import python from dockerhub.
   - create working dir
   - copy the requirement
