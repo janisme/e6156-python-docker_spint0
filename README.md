@@ -46,7 +46,7 @@ deactivate
       - .dockerignore: to exclude files and directories from the build context.
       - compose.yaml: used to configure your Docker application’s services, networks, volumes, and more.w
   - Commands:
-    - ```docker compose up --build  ``` run the app
+    - ```docker compose up --build  ``` run the app, set up network, pulling db, set up app and web from docker-compose.yaml
     - ```docker compose up --build -d``` run in background
     - ```docker compose down``` stop and remove containers defined in your Docker Compose file
 
