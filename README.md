@@ -34,8 +34,8 @@ deactivate
 
 ## Docker
 
-- Using command to build Docker.
-  - docker init
+- Method 1: Using command to build Docker.
+  - ```docker init```
     ```? What application platform does your project use? Python
     ? What version of Python do you want to use? 3.11
     ? What port do you want your app to listen on? 5000
@@ -47,11 +47,12 @@ deactivate
       - compose.yaml: used to configure your Docker application’s services, networks, volumes, and more.w
   - Commands:
     - ```docker compose up --build  ``` run the app
-    - ```docker compose up --build -d```, ```docker compose down``` run in background
+    - ```docker compose up --build -d``` run in background
+    - ```docker compose down``` stop and remove containers defined in your Docker Compose file
 
 
 
-- Wrote the docker files following a old school example.  https://medium.com/geekculture/how-to-dockerize-your-flask-application-2d0487ecefb8
+- Method 2: Wrote the docker files following a old school example.  https://medium.com/geekculture/how-to-dockerize-your-flask-application-2d0487ecefb8
   - dockerfile:
     - first import python from dockerhub.
     - create working dir
