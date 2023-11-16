@@ -22,7 +22,7 @@ source .venv/bin/activate
 (.venv) $ python3 -m pip install -r requirements.txt
 
 # Run the application and access from a browser, run the flask development server.
-(.venv) $ python3 -m flask run
+(.venv) $ python3 -m flask run #run a flask module
 or
 (.venv) $  python3 app.py
 
@@ -42,9 +42,9 @@ deactivate
     ? What is the command to run your app? flask run --host 0.0.0.0 ```
     
     - create:
-      - Dockerfile
-      - .dockerignore
-      - compose.yaml
+      - Dockerfile : a text document that contains all the commands a user could call on the command line to assemble an image.
+      - .dockerignore: to exclude files and directories from the build context.
+      - compose.yaml: used to configure your Docker application’s services, networks, volumes, and more.w
   - Commands:
     - ```docker compose up --build  ``` run the app
     - ```docker compose up --build -d```, ```docker compose down``` run in background
@@ -63,45 +63,35 @@ deactivate
     - Type in the run command which is flask run --host 0.0.0.0. This is to ensure the server accepts requests from all hosts.
   
   - Commands:
-    - ```docker build -t janisme/e6156-flask .```
-    - ```docker images``` (I have a lot of images)
+    - ```docker build -t janisme/e6156-flask .``` #build a docker image from current dirc(.) and tag it with name.
+    - ```docker images``` 
     - ```docker run -p 5001:5001 janisme/e6156-flask```
     - ```docker push janisme/e6156-flask``` (This step pushed an image for your architecture)
 
 ## EC2
 
+- There are several services like EC2, ECS, Fargate, and EKS to run Docker containers on AWS.
 - I used an Amazon Linux instance.
 
 
 - I followed this example: https://medium.com/appgambit/part-1-running-docker-on-aws-ec2-cbcf0ec7c3f8
   - ```sudo yum update -y```
+  - ```sudo yum install docker```
+- Activate docker
   - ```sudo service docker start```
   - ```sudo usermod -a -G docker ec2-user```
-  - I also installed Git.
+  - make sure you installed Git.
 
+- Pull docker and run a docker container
+  - ```docker pull janisme/e6156-flask```
+  - ```sudo docker run -p (-d) 5001:5001 janisme/e6156-flask ``` #-d use as background, port 5001 on the host machine to port 5001 in the container, janisme/e6156-flask: a docker image to use to create a container
 
-- I cloned the project instead of pulling the container because my Mac is ARM.
-  - docker build  . -f cool
-
-
-- There is a way to "build" on ARM for an Intel chipset. I am lazy.
-
-
-- I built the Dockerfile and then used ```curl localhost:5001```
-
-
-- I now need to modify the service group to get to port 5001. Go through the instance to security group and add a rule.
-
-
+- Used ```curl localhost:5001``` #remember to set the network security group, 'curl':making HTTP requests
 - Go into the console and get the EC2 instances public IP address. You can now access the app on 5001.
 
-
-- Pull the Docker container ```docker pull donff2/e6156-flask```
-
-
-- I used an Amazon Linux instance.
-- 
 
 ## Some Helpful Commands
 
 - Kill a process on a port (MacOS): ```lsof -i tcp:3000```
+- see which caontainer is in use ```docker ps```
+- kill container ```docker stop container_id ```
